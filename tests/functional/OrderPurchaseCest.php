@@ -22,7 +22,7 @@ class OrderPurchaseCest
         $I->fillField('billing_phone', '+2567123456');
         $I->fillField('billing_email', 'yosefu.omulangira.okot@test.test');
         $I->click('Place order');
-        $I->see('Order received');
+        $I->see('Order received');//This is an assertion
         $orderID = $I->grabFromCurrentUrl('~/order-received/(\d+)/~');
         //Confirm that the order is created
         $I->seePostInDatabase(
