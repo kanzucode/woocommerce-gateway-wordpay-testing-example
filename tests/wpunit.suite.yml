@@ -1,6 +1,7 @@
 # Codeception Test Suite Configuration
 #
-# Suite for unit or integration tests that require WordPress functions and classes.
+# Suite for WordPress unit tests (better referred to as integration tests
+# since they check how components work inside WordPress)
 
 actor: WpunitTester
 modules:
@@ -17,6 +18,6 @@ modules:
             tablePrefix: "%TEST_TABLE_PREFIX%"
             domain: "%TEST_SITE_WP_DOMAIN%"
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
-            title: "Test"        
+            title: "Test"
             plugins: ['woocommerce-gateway-wordpay/woocommerce-gateway-wordpay.php']
             activatePlugins: ['woocommerce-gateway-wordpay/woocommerce-gateway-wordpay.php']

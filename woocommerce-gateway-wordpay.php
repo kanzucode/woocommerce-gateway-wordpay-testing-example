@@ -39,9 +39,8 @@ add_filter( 'woocommerce_payment_gateways', 'wc_offline_add_to_gateways' );
 function wc_offline_gateway_plugin_links( $links ) {
 
 	$plugin_links = array(
-		'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=offline_gateway' ) . '">' . __( 'Configure', 'wc-gateway-wordpay' ) . '</a>'
+		'configure' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=offline_gateway' ) . '">' . __( 'Configure', 'wc-gateway-wordpay' ) . '</a>'
 	);
-
 	return array_merge( $plugin_links, $links );
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wc_offline_gateway_plugin_links' );
@@ -166,7 +165,7 @@ function wc_offline_gateway_init() {
     		$order = wc_get_order( $order_id );
 
     		if ( $order->get_total() > 0 ) {
-    			// Mark as on-hold (we're awaiting the cheque).
+    			// Mark as on-hold (we're awaiting WordPay).
     			$order->update_status( apply_filters( 'woocommerce_cheque_process_payment_order_status', 'on-hold', $order ), _x( 'Awaiting WordPay payment', 'WordPay payment method', 'woocommerce' ) );
     		} else {
     			$order->payment_complete();
