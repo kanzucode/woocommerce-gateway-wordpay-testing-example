@@ -9,18 +9,29 @@ actor: AcceptanceTester
 modules:
     enabled:
         - WPDb
-        - WPBrowser
+        - WPWebDriver
         - \Helper\Acceptance
     config:
+        WPWebDriver:
+          url: '%TEST_SITE_WP_URL%'
+          host: '%TEST_SITE_DB_HOST%'
+          browser: '%TEST_SITE_BROWSER%'
+          window_size: true
+          capabilities:
+              chromeOptions:
+                  args: ["--disable-gpu"]
+          adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
+          adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
+          adminUrl: '%TEST_SITE_WP_ADMIN_PATH%'
         WPDb:
             dsn: 'mysql:host=%TEST_SITE_DB_HOST%;dbname=%TEST_SITE_DB_NAME%'
             user: '%TEST_SITE_DB_USER%'
             password: '%TEST_SITE_DB_PASSWORD%'
             dump: 'tests/_data/dump.sql'
             #import the dump before the tests; this means the test site database will be repopulated before the tests.
-            populate: true 
+            populate: true
             # re-import the dump between tests; this means the test site database will be repopulated between the tests.
-            cleanup: true 
+            cleanup: true
             waitlock: 10
             url: '%TEST_SITE_WP_URL%'
             urlReplacement: true #replace the hardcoded dump URL with the one above
